@@ -270,10 +270,10 @@ export async function updatePost(post: IUpdatePost) {
   const hasFileToUpdate = post.file.length > 0;
 
   try {
-    let image = {
-      // imageUrl: post.imageUrl,
-      // imageId: post.imageId,
-    };
+    // let image = {
+    //   // imageUrl: post.imageUrl,
+    //   // imageId: post.imageId,
+    // };
 
     if (hasFileToUpdate) {
       // Upload new file to appwrite storage
@@ -489,27 +489,27 @@ export async function getUserById(userId: string) {
 
 // ============================== UPDATE USER
 export async function updateUser(user: IUpdateUser) {
-  const hasFileToUpdate = user.file.length > 0;
-  try {
-    let image = {
-      imageUrl: user.imageUrl,
-      imageId: user.imageId,
-    };
+  // const hasFileToUpdate = user.file.length > 0;
+  // try {
+  //   let image = {
+  //     imageUrl: user.imageUrl,
+  //     imageId: user.imageId,
+  //   };
 
-    if (hasFileToUpdate) {
-      // Upload new file to appwrite storage
-      const uploadedFile = await uploadFile(user.file[0]);
-      if (!uploadedFile) throw Error;
+  //   if (hasFileToUpdate) {
+  //     // Upload new file to appwrite storage
+  //     const uploadedFile = await uploadFile(user.file[0]);
+  //     if (!uploadedFile) throw Error;
 
-      // Get new file url
-      const fileUrl = getFilePreview(uploadedFile.$id);
-      if (!fileUrl) {
-        await deleteFile(uploadedFile.$id);
-        throw Error;
-      }
+  //     // Get new file url
+  //     const fileUrl = getFilePreview(uploadedFile.$id);
+  //     if (!fileUrl) {
+  //       await deleteFile(uploadedFile.$id);
+  //       throw Error;
+  //     }
 
-      image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
-    }
+  //     image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
+  //   }
 
     //  Update user
     const updatedUser = await databases.updateDocument(
@@ -519,25 +519,25 @@ export async function updateUser(user: IUpdateUser) {
       {
         name: user.name,
         bio: user.bio,
-        imageUrl: image.imageUrl,
-        imageId: image.imageId,
+        // imageUrl: image.imageUrl,
+        // imageId: image.imageId,
       }
     );
 
     // Failed to update
     if (!updatedUser) {
       // Delete new file that has been recently uploaded
-      if (hasFileToUpdate) {
-        await deleteFile(image.imageId);
-      }
+      // if (hasFileToUpdate) {
+      //   await deleteFile(image.imageId);
+      // }
       // If no new file uploaded, just throw error
       throw Error;
     }
 
     // Safely delete old file after successful update
-    if (user.imageId && hasFileToUpdate) {
-      await deleteFile(user.imageId);
-    }
+    // if (user.imageId && hasFileToUpdate) {
+    //   await deleteFile(user.imageId);
+    // }
 
     return updatedUser;
   } catch (error) {
