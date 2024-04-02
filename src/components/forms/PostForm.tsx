@@ -34,7 +34,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
     resolver: zodResolver(PostValidation),
     defaultValues: {
       caption: post ? post?.caption : "",
-      file: [],
+      // file: [],
       location: post ? post.location : "",
       tags: post ? post.tags.join(",") : "",
     },
@@ -53,8 +53,8 @@ const PostForm = ({ post, action }: PostFormProps) => {
       const updatedPost = await updatePost({
         ...value,
         postId: post.$id,
-        imageId: post.imageId,
-        imageUrl: post.imageUrl,
+        // imageId: post.imageId,
+        // imageUrl: post.imageUrl,
       });
 
       if (!updatedPost) {
@@ -101,7 +101,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           )}
         />
 
-        <FormField
+        {/* <FormField
           control={form.control}
           name="file"
           render={({ field }) => (
@@ -116,7 +116,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               <FormMessage className="shad-form_message" />
             </FormItem>
           )}
-        />
+        /> */}
 
         <FormField
           control={form.control}
@@ -142,7 +142,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Art, Expression, Learn"
+                  placeholder="Boozy, War-crime, Splattered"
                   type="text"
                   className="shad-input"
                   {...field}
