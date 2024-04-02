@@ -271,23 +271,23 @@ export async function updatePost(post: IUpdatePost) {
 
   try {
     let image = {
-      imageUrl: post.imageUrl,
-      imageId: post.imageId,
+      // imageUrl: post.imageUrl,
+      // imageId: post.imageId,
     };
 
     if (hasFileToUpdate) {
       // Upload new file to appwrite storage
-      const uploadedFile = await uploadFile(post.file[0]);
-      if (!uploadedFile) throw Error;
+      // const uploadedFile = await uploadFile(post.file[0]);
+      // if (!uploadedFile) throw Error;
 
       // Get new file url
-      const fileUrl = getFilePreview(uploadedFile.$id);
-      if (!fileUrl) {
-        await deleteFile(uploadedFile.$id);
-        throw Error;
-      }
+      // const fileUrl = getFilePreview(uploadedFile.$id);
+      // if (!fileUrl) {
+      //   await deleteFile(uploadedFile.$id);
+      //   throw Error;
+      // }
 
-      image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
+      // image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
     }
 
     // Convert tags into array
@@ -300,8 +300,8 @@ export async function updatePost(post: IUpdatePost) {
       post.postId,
       {
         caption: post.caption,
-        imageUrl: image.imageUrl,
-        imageId: image.imageId,
+        // imageUrl: image.imageUrl,
+        // imageId: image.imageId,
         location: post.location,
         tags: tags,
       }
@@ -311,7 +311,7 @@ export async function updatePost(post: IUpdatePost) {
     if (!updatedPost) {
       // Delete new file that has been recently uploaded
       if (hasFileToUpdate) {
-        await deleteFile(image.imageId);
+        // await deleteFile(image.imageId);
       }
 
       // If no new file uploaded, just throw error
@@ -320,7 +320,7 @@ export async function updatePost(post: IUpdatePost) {
 
     // Safely delete old file after successful update
     if (hasFileToUpdate) {
-      await deleteFile(post.imageId);
+      // await deleteFile(post.imageId);
     }
 
     return updatedPost;
