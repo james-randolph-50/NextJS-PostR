@@ -19,14 +19,14 @@ import {
   deletePost,
   likePost,
   getUserById,
-  updateUser,
+  // updateUser,
   getRecentPosts,
   getInfinitePosts,
   searchPosts,
   savePost,
   deleteSavedPost,
 } from "@/lib/appwrite/api";
-import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
+import { INewPost, INewUser, IUpdatePost } from "@/types";
 
 // ============================================================
 // AUTH QUERIES
@@ -230,17 +230,17 @@ export const useGetUserById = (userId: string) => {
   });
 };
 
-export const useUpdateUser = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (user: IUpdateUser) => updateUser(user),
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
-      });
-    },
-  });
-};
+// export const useUpdateUser = () => {
+//   const queryClient = useQueryClient();
+//   return useMutation({
+//     mutationFn: (user: IUpdateUser) => updateUser(user),
+//     onSuccess: (data) => {
+//       queryClient.invalidateQueries({
+//         queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+//       });
+//       queryClient.invalidateQueries({
+//         queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+//       });
+//     },
+//   });
+// };
