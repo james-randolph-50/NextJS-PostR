@@ -142,7 +142,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Boozy, War-crime, Splattered"
+                  placeholder="NextJS, React, Tailwind"
                   type="text"
                   className="shad-input"
                   {...field}

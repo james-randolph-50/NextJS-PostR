@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import {
   Home,
   // Explore,
-  Saved,
+  // Saved,
   CreatePost,
   Profile,
   EditPost,
@@ -33,7 +33,7 @@ const App = () => {
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
           {/* <Route path="/explore" element={<Explore />} /> */}
-          <Route path="/saved" element={<Saved />} />
+          {/* <Route path="/saved" element={<Saved />} /> */}
           <Route path="/all-users" element={<AllUsers />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:id" element={<EditPost />} />

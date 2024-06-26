@@ -81,7 +81,7 @@ const SignupForm = () => {
           Create a new account
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          Share your shit with the world.
+          Share your thoughts with the world.
         </p>
 
         <form

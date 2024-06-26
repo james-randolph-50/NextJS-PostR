@@ -55,7 +55,7 @@ const PostDetails = () => {
         <div className="post_details-card">
           <img
             src={post?.imageUrl}
-            alt="yes, there are bugs. DEAL WITH IT."
+            alt="image alt tag"
             className="post_details-img"
           />
 
