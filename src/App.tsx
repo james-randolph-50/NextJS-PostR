@@ -8,7 +8,7 @@ import {
   Profile,
   EditPost,
   PostDetails,
-  // UpdateProfile,
+  // UpdateProfile,,
   AllUsers,
 } from "@/_root/pages";
 import AuthLayout from "./_auth/AuthLayout";
